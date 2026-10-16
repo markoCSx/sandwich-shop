@@ -9,20 +9,29 @@ public class PointOfSale {
         //Scanner $#@!
         Scanner userInput = new Scanner(System.in);
         String userText;
+        String userYoN;
 //---------------------------------------Declaring Variables-------------------------------------------
         //Prices
         double regular;
         double large;
         double total;
+        double loadedR;
+        double loadedL;
+
+        //Customer Data
+        int age;
+        double choice;
+        boolean loaded;
 
         //Initializing Prices
         regular = 5.45;
         large = 8.95;
         total = 0;
-
-        //Customer Data
-        int age;
-        double choice;
+        choice = 0;
+        age = 0;
+        loaded = false;
+        loadedR = 1.00;
+        loadedL = 1.75;
 //-----------------------------------------Customer Prompts--------------------------------------------------
         //Age
         System.out.print("Age: ");
@@ -32,23 +41,40 @@ public class PointOfSale {
         //Sandwich Size
         System.out.printf("""
                 Sizes:
-                Regular - %.2f
-                Large - %.2f
+                (R)egular - %.2f
+                (L)arge - %.2f
                 Choice:\t""", regular, large);
         userText = userInput.nextLine();
-        if (userText.equals("Regular")) {
-            choice = regular;
+        //Sandwich Load
+        System.out.println("""
+                Load Sandwich?
+                (Y)es/(N)o""");
+        userYoN = userInput.nextLine();
+//-------------------------------------------Customer Choices LOGIC-----------------------------------------
+        //LOADED
+        if (userYoN.equals("Y")){
+            loaded = true;
+        }
+        //Size
+        if (userText.equals("R")) {
+            if (loaded) {
+                choice = loadedR;
+            }
+            choice = choice + regular;
         }
         else {
-            if (userText.equals("Large")){
-                choice = large;
+            if (userText.equals("L")){
+                if (loaded) {
+                    choice = loadedL;
+                }
+                choice = choice + large;
             }
             else {
                 choice = 0.0;
             }
         }//CHOICE IF END
 //-------------------------------------------MATH--------------------------------------------------------
-        //Price Math
+        //Total Cost
         if (choice <= 0) {
             System.out.println("Order Canceled");
         }
