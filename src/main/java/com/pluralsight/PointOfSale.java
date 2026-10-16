@@ -6,11 +6,10 @@ public class PointOfSale {
 
     public static void main(String[] args) {
 
+        //Scanner $#@!
         Scanner userInput = new Scanner(System.in);
         String userText;
-
-        //Declaring Variables
-
+//---------------------------------------Declaring Variables-------------------------------------------
         //Prices
         double regular;
         double large;
@@ -19,13 +18,12 @@ public class PointOfSale {
         //Initializing Prices
         regular = 5.45;
         large = 8.95;
+        total = 0;
 
         //Customer Data
         int age;
         double choice;
-
-        //Customer Prompts
-
+//-----------------------------------------Customer Prompts--------------------------------------------------
         //Age
         System.out.print("Age: ");
         userText = userInput.nextLine();
@@ -34,9 +32,9 @@ public class PointOfSale {
         //Sandwich Size
         System.out.printf("""
                 Sizes:
-                Regular- %f
-                Large- %f
-                Choice: """, regular, large);
+                Regular - %.2f
+                Large - %.2f
+                Choice:\t""", regular, large);
         userText = userInput.nextLine();
         if (userText.equals("Regular")) {
             choice = regular;
@@ -48,8 +46,31 @@ public class PointOfSale {
             else {
                 choice = 0.0;
             }
+        }//CHOICE IF END
+//-------------------------------------------MATH--------------------------------------------------------
+        //Price Math
+        if (choice <= 0) {
+            System.out.println("Order Canceled");
         }
-
-    }
-
-}
+        else {
+            if (age <= 17) {
+                total = choice * 0.9;
+            }
+            else {
+                if (age >= 65) {
+                    total = choice * 0.8;
+                }
+                else {
+                    total = choice;
+                }
+            }
+        }
+//-----------------------------------------Prints------------------------------------------------------
+        //Print Total
+        if (choice > 0) {
+            System.out.printf("\n----- BILL -----\n%.2f", total);
+        }
+//--------------------------------------------------------------------------------------------------------
+    }//MAIN END
+//--------------------------------------------------------------------------------------------------------
+}//POS CLASS END
