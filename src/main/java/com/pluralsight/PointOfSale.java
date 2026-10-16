@@ -22,12 +22,12 @@ public class PointOfSale {
 
         //Customer Data
         int age;
-        String choice;
+        double choice;
 
         //Customer Prompts
 
         //Age
-        System.out.println("Age: ");
+        System.out.print("Age: ");
         userText = userInput.nextLine();
         age = Integer.parseInt(userText);
 
@@ -36,9 +36,19 @@ public class PointOfSale {
                 Sizes:
                 Regular- %f
                 Large- %f
-                %n""", regular, large);
+                Choice: """, regular, large);
         userText = userInput.nextLine();
-        choice = userText;
+        if (userText.equals("Regular")) {
+            choice = regular;
+        }
+        else {
+            if (userText.equals("Large")){
+                choice = large;
+            }
+            else {
+                choice = 0.0;
+            }
+        }
 
     }
 
